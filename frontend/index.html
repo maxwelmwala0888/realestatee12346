@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Sanderson Realty Consultancy | Building Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Your existing CSS – unchanged */
+        :root {
+            --primary: #c19a5b;
+            --primary-dark: #a87c3e;
+            --secondary: #2c3e50;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 1.2rem 0.8rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateX(0);
+            max-width: 200px;
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-200px);
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-toggle:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-icon {
+            background-color: var(--primary);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .logo-text h2 {
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .logo-text .james {
+            color: #ffd700;
+        }
+
+        .logo-text p {
+            font-size: 0.65rem;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-bottom: 1.2rem;
+            width: 100%;
+        }
+
+        .nav-item {
+            margin-bottom: 0.3rem;
+            width: 100%;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.6rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(193, 154, 91, 0.2);
+            color: white;
+            border-left: 3px solid var(--primary);
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            width: 18px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .add-new-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .add-new-btn:hover {
+            background-color: rgba(193, 154, 91, 0.2);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .add-new-btn i {
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+
+        .contact-info {
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .contact-info i {
+            margin-right: 6px;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 200px;
+            padding: 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            max-width: calc(100vw - 200px);
+            overflow-x: hidden;
+        }
+
+        .main-content.expanded {
+            margin-left: 0;
+            max-width: 100vw;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+            max-width: 100%;
+        }
+
+        .page-title h1 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .page-title h1 .james {
+            color: #ffd700;
+        }
+
+        .page-title p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .inspiration-text {
+            color: var(--primary);
+            font-style: italic;
+            font-weight: 600;
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .search-box {
+            position: relative;
+            margin-right: 0.8rem;
+            min-width: 180px;
+        }
+
+        .search-box input {
+            padding: 0.5rem 0.7rem 0.5rem 2rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 0.8rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            text-align: center;
+            flex-direction: column;
+            max-width: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background-color: rgba(193, 154, 91, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .stat-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+            color: var(--secondary);
+        }
+
+        .stat-info p {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--gray);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .empty-state p {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid rgba(193, 154, 91, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .section-title span {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .main-sections-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+
+        .section-block {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            max-width: 100%;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 0;
+        }
+
+        .view-all-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .view-all-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 100%;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            max-width: 100%;
+            height: 400px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            height: 280px;
+            width: 100%;
+            background-color: #f8f9fa;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        .project-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status-completed {
+            background-color: #28a745;
+        }
+
+        .status-progress {
+            background-color: var(--primary);
+        }
+
+        .project-info {
+            padding: 0.8rem;
+        }
+
+        .project-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+        }
+
+        .project-location {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .project-location i {
+            margin-right: 3px;
+        }
+
+        .project-info p {
+            color: var(--gray);
+            font-size: 0.75rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .view-more-btn {
+            display: block;
+            width: 100%;
+            background-color: #f8f9fa;
+            border: 2px dashed #ddd;
+            color: var(--secondary);
+            padding: 0.7rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .view-more-btn:hover {
+            background-color: rgba(193, 154, 91, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .design-selection-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            min-height: 300px;
+        }
+
+        .design-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .design-category {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .design-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(193, 154, 91, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.6rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .design-category h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+        }
+
+        .design-category p {
+            color: var(--gray);
+            font-size: 0.75rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .category-select-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .category-select-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .reviews-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            min-height: 400px;
+        }
+
+        .reviews-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding-bottom: 0.7rem;
+            margin-top: 1rem;
+            max-width: 100%;
+            min-height: 200px;
+        }
+
+        .reviews-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .reviews-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+
+        .reviews-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 6px;
+        }
+
+        .review-card {
+            flex: 0 0 auto;
+            width: 220px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-right: 0.7rem;
+            font-size: 0.8rem;
+            overflow: hidden;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-info h4 {
+            margin-bottom: 0.2rem;
+            font-size: 0.85rem;
+        }
+
+        .review-stars {
+            color: #ffc107;
+            font-size: 0.7rem;
+        }
+
+        .review-content {
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .comment-input-container {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .comment-input-title {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-input-title i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .comment-input-bar {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 60px;
+            max-height: 120px;
+            transition: var(--transition);
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(193, 154, 91, 0.1);
+        }
+
+        .comment-input-bar .btn {
+            align-self: flex-end;
+            padding: 0.6rem 1.2rem;
+            white-space: nowrap;
+        }
+
+        .add-comment-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.7rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.85rem;
+        }
+
+        .add-comment-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(193, 154, 91, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        .main-footer {
+            background-color: #1a2530;
+            color: white;
+            padding: 2rem 1.2rem 1rem;
+            margin-top: 2rem;
+            max-width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-logo .james {
+            color: #ffd700;
+        }
+
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .footer-links h4, .footer-services h4, .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.4rem;
+        }
+
+        .footer-links h4:after, .footer-services h4:after, .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 35px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul, .footer-services ul {
+            list-style: none;
+        }
+
+        .footer-links li, .footer-services li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a, .footer-services a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover, .footer-services a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i, .footer-services a i {
+            margin-right: 5px;
+            width: 16px;
+            font-size: 0.8rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.7rem;
+        }
+
+        .contact-detail i {
+            color: var(--primary);
+            margin-right: 6px;
+            margin-top: 2px;
+            font-size: 0.85rem;
+        }
+
+        .contact-detail p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 1rem;
+            transition: var(--transition);
+            font-size: 0.75rem;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--primary);
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .fab {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            text-decoration: none;
+            color: white;
+        }
+
+        .fab.whatsapp {
+            background-color: #25D366;
+        }
+
+        .fab.location {
+            background-color: #4285F4;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab.whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        .fab.location:hover {
+            background-color: #3367D6;
+        }
+
+        .page-content {
+            display: none;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .upload-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            min-height: 600px;
+        }
+
+        .upload-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-header h2 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .upload-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .upload-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px dashed #ddd;
+            transition: var(--transition);
+        }
+
+        .upload-box:hover {
+            border-color: var(--primary);
+            background-color: #fff;
+        }
+
+        .upload-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(193, 154, 91, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(193, 154, 91, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background-color: rgba(193, 154, 91, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .upload-subtext {
+            color: #aaa;
+            font-size: 0.75rem;
+        }
+
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .upload-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .file-list {
+            margin-top: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: #fff;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #eee;
+            font-size: 0.8rem;
+        }
+
+        .file-item i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .file-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .remove-file {
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .before-after-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            min-height: 500px;
+        }
+
+        .before-after-upload {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .before-after-upload {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .before-box, .after-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px dashed #ddd;
+            transition: var(--transition);
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .before-box:hover, .after-box:hover {
+            border-color: var(--primary);
+            background-color: #fff;
+        }
+
+        .before-box h3, .after-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+        }
+
+        .gallery-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            min-height: 500px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            height: 550px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-img img {
+            transform: scale(1.05);
+        }
+
+        .gallery-info {
+            padding: 0.8rem;
+            background-color: white;
+        }
+
+        .gallery-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+        }
+
+        .gallery-info p {
+            color: var(--gray);
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .select-design-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .select-design-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        @media (max-width: 1200px) {
+            .projects-grid, .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 180px;
+            }
+            .main-content {
+                margin-left: 180px;
+                max-width: calc(100vw - 180px);
+            }
+            .logo-text h2 {
+                font-size: 0.9rem;
+            }
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .projects-grid, .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+                transform: translateX(0) !important;
+                max-width: 100%;
+            }
+            .sidebar-toggle {
+                display: none;
+            }
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-item {
+                margin: 0.2rem;
+                width: auto;
+            }
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+                width: auto;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                max-width: 100vw;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .user-actions {
+                margin-top: 0.8rem;
+                width: 100%;
+            }
+            .search-box {
+                flex: 1;
+                margin-right: 0.8rem;
+                min-width: 150px;
+            }
+            .search-box input {
+                width: 100%;
+                max-width: none;
+            }
+            .projects-grid, .gallery-grid, .design-categories {
+                grid-template-columns: 1fr;
+            }
+            .comment-input-bar {
+                flex-direction: column;
+            }
+            .comment-input-bar .btn {
+                width: 100%;
+                align-self: stretch;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.6rem;
+            }
+            .footer-bottom-links a {
+                margin: 0 0.5rem;
+            }
+            .before-after-upload {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .fab-container {
+                bottom: 15px;
+                right: 15px;
+            }
+            .fab {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            .section-block {
+                padding: 1rem;
+            }
+            .header {
+                margin-bottom: 1rem;
+            }
+            .page-title h1 {
+                font-size: 1.3rem;
+            }
+            .user-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box {
+                margin-right: 0;
+                margin-bottom: 0.8rem;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* ===== RESPONSIVE ENHANCEMENTS - ADD THIS ENTIRE BLOCK ===== */
+
+/* Extra small devices (phones, less than 480px) */
+@media (max-width: 480px) {
+    .project-card {
+        height: 350px;
+    }
+    .project-img {
+        height: 200px;
+    }
+    .project-info p {
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+    }
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    .review-card {
+        width: 160px;
+    }
+    .gallery-item {
+        height: 400px;
+    }
+    .gallery-img {
+        height: 150px;
+    }
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Small devices (landscape phones, 481px to 576px) */
+@media (min-width: 481px) and (max-width: 576px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .project-card {
+        height: 350px;
+    }
+    .project-img {
+        height: 200px;
+    }
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium devices (tablets, 577px to 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .project-card {
+        height: 380px;
+    }
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large devices (small laptops, 769px to 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Extra large devices (laptops/desktops, 993px to 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Ultra-wide devices (1201px and above) */
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+    .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .design-categories {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Touch device optimization */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link,
+    .btn,
+    .category-select-btn,
+    .add-new-btn,
+    .view-more-btn {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+    .stat-card,
+    .section-block,
+    .project-card,
+    .design-selection-section,
+    .reviews-section,
+    .upload-section,
+    .gallery-section {
+        background-color: #2d2d2d;
+    }
+}
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-form">
+            <button class="close-modal" id="closeLoginModal">&times;</button>
+            <h2>Login to Share Experience</h2>
+            <div class="form-group">
+                <label for="userName">Full Name</label>
+                <input type="text" id="userName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="userEmail">Email Address</label>
+                <input type="email" id="userEmail" placeholder="Enter your email">
+            </div>
+            <button class="login-btn" id="submitLogin">Continue to Share Experience</button>
+        </div>
+    </div>
+
+    <!-- Sidebar Toggle -->
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon">JS</div>
+                <div class="logo-text">
+                    <h2><span class="james">James</span> Sanderson Realty</h2>
+                    <p>Bringing your dreams into reality</p>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="about">
+                        <i class="fas fa-info-circle"></i> About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="services">
+                        <i class="fas fa-concierge-bell"></i> Our Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="completed-projects">
+                        <i class="fas fa-check-circle"></i> Completed Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="progress-projects">
+                        <i class="fas fa-tools"></i> Projects in Progress
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="before-after">
+                        <i class="fas fa-exchange-alt"></i> Before & After
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="house-designs">
+                        <i class="fas fa-vector-square"></i> House Designs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="kitchen-designs">
+                        <i class="fas fa-utensils"></i> Kitchen Designs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="ceiling-designs">
+                        <i class="fas fa-border-style"></i> Ceiling Designs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="contact">
+                        <i class="fas fa-phone"></i> Contact Us
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> 265995891694</p>
+                    <p><i class="fas fa-envelope"></i> info@sandersonrealty.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8am-6pm</p>
+                </div>
+                <button class="add-new-btn" id="uploadContentBtn">
+                    <i class="fas fa-plus-circle"></i> Upload Content
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content" id="mainContent">
+            <div class="content-wrapper">
+                <!-- Upload Page -->
+                <div id="upload-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Upload new projects and content to showcase your work</p>
+                            <div class="inspiration-text">Share Your Achievements With The World</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search uploads...">
+                            </div>
+                            <button class="btn" id="backToDashboard">Back to Dashboard</button>
+                        </div>
+                    </header>
+                    
+                    <div class="upload-grid">
+                        <!-- Completed Projects Upload Section (fixed) -->
+                        <div class="upload-section">
+                            <div class="upload-header">
+                                <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px; font-size: 1.2rem;"></i>
+                                <h2>Upload Completed Projects</h2>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="completed-project-title">Project Title *</label>
+                                <input type="text" id="completed-project-title" placeholder="Enter project title">
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-project-location">Location *</label>
+                                <input type="text" id="completed-project-location" placeholder="Enter location">
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-project-description">Project Description *</label>
+                                <textarea id="completed-project-description" placeholder="Describe the project"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-project-date">Completion Date *</label>
+                                <input type="date" id="completed-project-date">
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Photos & Videos *</label>
+                                <div class="upload-area" id="completed-upload-area">
+                                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                    <div class="upload-text">Browse from device</div>
+                                    <div class="upload-subtext">Click to upload or drag and drop</div>
+                                    <div class="upload-subtext">Supports JPG, PNG, GIF, MP4, AVI (Max 50MB)</div>
+                                    <input type="file" id="completed-file-input" accept="image/*,video/*" multiple style="display: none;">
+                                </div>
+                                <div class="file-list" id="completed-file-list"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-additional-info">Additional Information</label>
+                                <textarea id="completed-additional-info" placeholder="Add any additional details"></textarea>
+                            </div>
+                            <button class="upload-btn" id="upload-completed-btn">
+                                <i class="fas fa-upload"></i> Upload Completed Project
+                            </button>
+                        </div>
+                        
+                        <!-- Projects in Progress Upload Section (fixed) -->
+                        <div class="upload-section">
+                            <div class="upload-header">
+                                <i class="fas fa-tools" style="color: var(--primary); margin-right: 10px; font-size: 1.2rem;"></i>
+                                <h2>Upload Projects in Progress</h2>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="progress-project-title">Project Title *</label>
+                                <input type="text" id="progress-project-title" placeholder="Enter project title">
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-project-location">Location *</label>
+                                <input type="text" id="progress-project-location" placeholder="Enter location">
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-project-description">Project Description *</label>
+                                <textarea id="progress-project-description" placeholder="Describe the project"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-start-date">Start Date *</label>
+                                <input type="date" id="progress-start-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-expected-date">Expected Completion Date</label>
+                                <input type="date" id="progress-expected-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-percentage">Progress Percentage</label>
+                                <select id="progress-percentage">
+                                    <option value="">Select progress percentage</option>
+                                    <option value="10">10% - Just Started</option>
+                                    <option value="25">25% - Foundation Work</option>
+                                    <option value="50">50% - Halfway Complete</option>
+                                    <option value="75">75% - Finishing Stage</option>
+                                    <option value="90">90% - Nearly Complete</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Photos & Videos *</label>
+                                <div class="upload-area" id="progress-upload-area">
+                                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                    <div class="upload-text">Browse from device</div>
+                                    <div class="upload-subtext">Click to upload or drag and drop</div>
+                                    <div class="upload-subtext">Supports JPG, PNG, GIF, MP4, AVI (Max 50MB)</div>
+                                    <input type="file" id="progress-file-input" accept="image/*,video/*" multiple style="display: none;">
+                                </div>
+                                <div class="file-list" id="progress-file-list"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="progress-additional-info">Additional Information</label>
+                                <textarea id="progress-additional-info" placeholder="Add any additional details"></textarea>
+                            </div>
+                            <button class="upload-btn" id="upload-progress-btn">
+                                <i class="fas fa-upload"></i> Upload Progress Project
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem; color: var(--gray); font-size: 0.85rem;">
+                        <p><i class="fas fa-info-circle"></i> All uploaded content will be reviewed before appearing on the main dashboard.</p>
+                    </div>
+                </div>
+                
+                <!-- Before & After Page -->
+                <div id="before-after-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Transformation showcase - see the amazing before and after results</p>
+                            <div class="inspiration-text">Witness the Transformation</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search transformations...">
+                            </div>
+                            <button class="btn" id="uploadBeforeAfter">Upload Your Before/After</button>
+                        </div>
+                    </header>
+                    
+                    <div class="before-after-section">
+                        <h2 class="section-title">Upload Before & After Photos</h2>
+                        <div class="before-after-upload">
+                            <div class="before-box" id="before-upload-box">
+                                <h3>Before Photos</h3>
+                                <div class="upload-icon"><i class="fas fa-camera"></i></div>
+                                <div class="upload-text">Upload "Before" Photos</div>
+                                <div class="upload-subtext">Click to upload or drag and drop</div>
+                                <div class="upload-subtext">Supports JPG, PNG (Max 30MB each)</div>
+                                <input type="file" id="before-file-input" accept="image/*" multiple style="display: none;">
+                            </div>
+                            <div class="after-box" id="after-upload-box">
+                                <h3>After Photos</h3>
+                                <div class="upload-icon"><i class="fas fa-home"></i></div>
+                                <div class="upload-text">Upload "After" Photos</div>
+                                <div class="upload-subtext">Click to upload or drag and drop</div>
+                                <div class="upload-subtext">Supports JPG, PNG (Max 30MB each)</div>
+                                <input type="file" id="after-file-input" accept="image/*" multiple style="display: none;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 2rem;">
+                            <label for="before-after-description">Transformation Description *</label>
+                            <textarea id="before-after-description" placeholder="Describe the transformation process, challenges, and results"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="before-after-location">Location</label>
+                            <input type="text" id="before-after-location" placeholder="Enter location">
+                        </div>
+                        <button class="upload-btn" id="upload-before-after-btn">
+                            <i class="fas fa-upload"></i> Upload Before & After
+                        </button>
+                    </div>
+                    
+                    <div class="section-block" style="margin-top: 2rem;">
+                        <h2 class="section-title">Recent Transformations</h2>
+                        <div class="empty-state">
+                            <div class="empty-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <h3>No Transformations Yet</h3>
+                            <p>Upload before and after photos to showcase your amazing transformations.</p>
+                            <button class="btn" id="uploadFirstTransformation">
+                                <i class="fas fa-upload"></i> Upload Your First Transformation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- House Designs Page -->
+                <div id="house-designs-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Browse our collection of modern house designs</p>
+                            <div class="inspiration-text">Find Your Perfect Home Design</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search house designs...">
+                            </div>
+                            <button class="btn">Consult About Design</button>
+                        </div>
+                    </header>
+                    <div class="gallery-section">
+                        <h2 class="section-title">Modern House Designs</h2>
+                        <div class="empty-state">
+                            <div class="empty-icon"><i class="fas fa-home"></i></div>
+                            <h3>No House Designs Uploaded Yet</h3>
+                            <p>Upload house designs to showcase your architectural expertise.</p>
+                            <button class="btn" onclick="showPage('upload')">
+                                <i class="fas fa-upload"></i> Upload House Designs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kitchen Designs Page -->
+                <div id="kitchen-designs-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Browse our collection of modern kitchen designs</p>
+                            <div class="inspiration-text">Transform Your Cooking Space</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search kitchen designs...">
+                            </div>
+                            <button class="btn">Consult About Design</button>
+                        </div>
+                    </header>
+                    <div class="gallery-section">
+                        <h2 class="section-title">Kitchen Designs</h2>
+                        <div class="empty-state">
+                            <div class="empty-icon"><i class="fas fa-utensils"></i></div>
+                            <h3>No Kitchen Designs Uploaded Yet</h3>
+                            <p>Upload kitchen designs to showcase your interior design expertise.</p>
+                            <button class="btn" onclick="showPage('upload')">
+                                <i class="fas fa-upload"></i> Upload Kitchen Designs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ceiling Designs Page -->
+                <div id="ceiling-designs-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Browse our collection of modern ceiling designs</p>
+                            <div class="inspiration-text">Elevate Your Interior Spaces</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search ceiling designs...">
+                            </div>
+                            <button class="btn">Consult About Design</button>
+                        </div>
+                    </header>
+                    <div class="gallery-section">
+                        <h2 class="section-title">Ceiling Designs</h2>
+                        <div class="empty-state">
+                            <div class="empty-icon"><i class="fas fa-border-style"></i></div>
+                            <h3>No Ceiling Designs Uploaded Yet</h3>
+                            <p>Upload ceiling designs to showcase your architectural detailing expertise.</p>
+                            <button class="btn" onclick="showPage('upload')">
+                                <i class="fas fa-upload"></i> Upload Ceiling Designs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Page - FIXED: Containers for cards added -->
+                <div id="dashboard-page" class="page-content active">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Building dreams, constructing realities since 2017</p>
+                            <div class="inspiration-text">Bringing Your Dreams Into Reality</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search projects, designs, or services...">
+                            </div>
+                            <a href="#" class="btn">Get Quote</a>
+                        </div>
+                    </header>
+                    
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-home"></i></div>
+                            <div class="stat-info"><h3 id="completed-count">0</h3><p>Projects Completed</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-hard-hat"></i></div>
+                            <div class="stat-info"><h3 id="progress-count">0</h3><p>Active Projects</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-award"></i></div>
+                            <div class="stat-info"><h3>28+</h3><p>Years Experience</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                            <div class="stat-info"><h3 id="clients-count">0</h3><p>Satisfied Clients</p></div>
+                        </div>
+                    </div>
+                    
+                    <div class="main-sections-grid">
+                        <!-- Section 1: Completed Projects - Cards will appear here -->
+                        <div class="section-block">
+                            <div class="section-header">
+                                <h2>Completed Projects</h2>
+                                <a href="#" class="view-all-link">View All (<span id="completed-count-link">0</span>)</a>
+                            </div>
+                            <div class="projects-grid" id="completed-projects-container"></div>
+                            <button class="view-more-btn" id="viewMoreCompleted">
+                                <i class="fas fa-chevron-down"></i> View More Completed Projects
+                            </button>
+                        </div>
+                        
+                        <!-- Section 2: Projects in Progress - Cards will appear here -->
+                        <div class="section-block">
+                            <div class="section-header">
+                                <h2>Projects In Progress</h2>
+                                <a href="#" class="view-all-link">View All (<span id="progress-count-link">0</span>)</a>
+                            </div>
+                            <div class="projects-grid" id="progress-projects-container"></div>
+                            <button class="view-more-btn" id="viewMoreProgress">
+                                <i class="fas fa-chevron-down"></i> View More Projects in Progress
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="design-selection-section">
+                        <h2 class="section-title">Select Your Design</h2>
+                        <div class="design-categories">
+                            <div class="design-category" data-category="house-designs">
+                                <div class="category-icon"><i class="fas fa-home"></i></div>
+                                <h4>House Designs</h4>
+                                <p>Browse modern house designs</p>
+                                <button class="category-select-btn">Browse Designs</button>
+                            </div>
+                            <div class="design-category" data-category="kitchen-designs">
+                                <div class="category-icon"><i class="fas fa-utensils"></i></div>
+                                <h4>Kitchen Designs</h4>
+                                <p>Modern kitchen layouts</p>
+                                <button class="category-select-btn">Browse Designs</button>
+                            </div>
+                            <div class="design-category" data-category="ceiling-designs">
+                                <div class="category-icon"><i class="fas fa-border-style"></i></div>
+                                <h4>Ceiling Designs</h4>
+                                <p>Modern ceiling designs</p>
+                                <button class="category-select-btn">Browse Designs</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <h2 class="section-title">Client Testimonials <span id="reviews-count">0 Reviews</span></h2>
+                        <div id="reviews-container" class="reviews-container"></div>
+                        <div id="reviews-empty-state" class="empty-state">
+                            <div class="empty-icon"><i class="fas fa-comments"></i></div>
+                            <h3>No Reviews Yet</h3>
+                            <p>Be the first to review.</p>
+                        </div>
+                        <div class="comment-input-container">
+                            <div class="comment-input-title"><i class="fas fa-comment-dots"></i> Share Your Experience</div>
+                            <div class="comment-input-bar">
+                                <textarea class="comment-input" id="userCommentInput" placeholder="Write your comment..."></textarea>
+                                <button class="btn" id="submitCommentBtn"><i class="fas fa-paper-plane"></i> Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Us Page (correct content) -->
+                <div id="about-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Building excellence since 2017 with integrity, quality, and innovation</p>
+                            <div class="inspiration-text">Our Journey of Building Dreams</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search about us...">
+                            </div>
+                            <a href="#" class="btn">Contact Us</a>
+                        </div>
+                    </header>
+                    
+                    <div class="section-block">
+                        <h2 class="section-title">Company History</h2>
+                        <div style="margin-bottom: 2rem;">
+                            <p style="margin-bottom: 1rem; line-height: 1.6;">Founded in 2017, the company began as a small construction firm focused on residential renovation and has since evolved into a full-service realty and construction consultancy serving clients across the region.
+
+With nearly three decades of industry experience, the business has successfully delivered over 247 projects, including single-family homes, multi-unit developments, and commercial complexes. The company is driven by a commitment to quality workmanship, efficient project delivery, and professional client service, offering end-to-end solutions from planning and design to construction and property consultancy..</p>
+                            <p style="margin-bottom: 1rem; line-height: 1.6;">Over nearly three decades, we've completed over 247 projects, ranging from single-family homes to commercial complexes, always maintaining our commitment to quality craftsmanship and client satisfaction.</p>
+                        </div>
+                        
+                        <h2 class="section-title">Our Achievements</h2>
+                        <div class="dashboard-stats" style="margin-top: 1rem;">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="stat-info"><h3>28+</h3><p>Years Experience</p></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-home"></i></div>
+                                <div class="stat-info"><h3>247</h3><p>Projects Completed</p></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                                <div class="stat-info"><h3>50+</h3><p>Expert Team Members</p></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="stat-info"><h3>98%</h3><p>Client Satisfaction</p></div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="section-title" style="margin-top: 2rem;">Our Mission & Values</h2>
+                        <div style="margin-top: 1rem;">
+                            <p style="margin-bottom: 1rem; line-height: 1.6;"><strong>Mission:</strong> To provide exceptional realty consultancy and construction services that transform our clients' visions into sustainable, beautifully crafted realities.</p>
+                            <p style="margin-bottom: 1rem; line-height: 1.6;"><strong>Values:</strong> Integrity in every transaction, quality in every detail, innovation in every design, and commitment to client satisfaction above all else.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services Page (correct content) -->
+                <div id="services-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Comprehensive realty and construction solutions for residential and commercial clients</p>
+                            <div class="inspiration-text">Building Your Vision With Excellence</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search services...">
+                            </div>
+                            <a href="#" class="btn">Request Service</a>
+                        </div>
+                    </header>
+                    
+                    <div class="design-categories" style="margin-top: 2rem;">
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-building"></i></div>
+                            <h4>Real Estate Agency</h4>
+                            <p>Comprehensive property buying, selling, and leasing services with expert market analysis.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <h4>Property Valuation</h4>
+                            <p>Accurate property assessments for sales, purchases, insurance, and tax purposes.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-tasks"></i></div>
+                            <h4>Property Management</h4>
+                            <p>Full-service management for rental properties including maintenance and tenant relations.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-drafting-compass"></i></div>
+                            <h4>Architectural Designs</h4>
+                            <p>Custom architectural plans and designs tailored to your lifestyle and budget.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-hard-hat"></i></div>
+                            <h4>General Construction</h4>
+                            <p>Complete construction services from foundation to finishing with quality craftsmanship.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                        <div class="design-category">
+                            <div class="category-icon"><i class="fas fa-home"></i></div>
+                            <h4>Custom Home Building</h4>
+                            <p>Turnkey custom home construction with personalized design and material selection.</p>
+                            <button class="category-select-btn">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Completed Projects Page -->
+                <div id="completed-projects-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Browse our portfolio of completed projects</p>
+                            <div class="inspiration-text">Our Completed Masterpieces</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search completed projects...">
+                            </div>
+                            <button class="btn" id="uploadCompletedPage">Upload New Project</button>
+                        </div>
+                    </header>
+                    
+                    <div class="section-block">
+                        <h2 class="section-title">All Completed Projects</h2>
+                        <div class="projects-grid" id="all-completed-projects"></div>
+                    </div>
+                </div>
+                
+                <!-- Progress Projects Page -->
+                <div id="progress-projects-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Browse our ongoing projects in progress</p>
+                            <div class="inspiration-text">Witness the Work in Progress</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search projects in progress...">
+                            </div>
+                            <button class="btn" id="uploadProgressPage">Upload New Project</button>
+                        </div>
+                    </header>
+                    
+                    <div class="section-block">
+                        <h2 class="section-title">All Projects in Progress</h2>
+                        <div class="projects-grid" id="all-progress-projects"></div>
+                    </div>
+                </div>
+                
+                <!-- Contact Page (correct content) -->
+                <div id="contact-page" class="page-content">
+                    <header class="header">
+                        <div class="page-title">
+                            <h1><span class="james">James</span> Sanderson Realty Consultancy</h1>
+                            <p>Get in touch with us for consultations and inquiries</p>
+                            <div class="inspiration-text">Let's Build Together</div>
+                        </div>
+                        <div class="user-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search contact info...">
+                            </div>
+                            <a href="#" class="btn">Schedule Consultation</a>
+                        </div>
+                    </header>
+                    
+                    <div class="section-block">
+                        <h2 class="section-title">Contact Information</h2>
+                        <div class="design-categories" style="margin-top: 1rem;">
+                            <div class="design-category">
+                                <div class="category-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <h4>Office Address</h4>
+                                <p>area 3, opposite sunbird hotel Lilongwe</p>
+                                <button class="category-select-btn" id="viewOnMapBtn">View on Map</button>
+                            </div>
+                            <div class="design-category">
+                                <div class="category-icon"><i class="fas fa-phone"></i></div>
+                                <h4>Phone Numbers</h4>
+                                <p>Office: 265995891694<br>Mobile: 265995891694</p>
+                                <button class="category-select-btn" id="callUsBtn">Call Now</button>
+                            </div>
+                            <div class="design-category">
+                                <div class="category-icon"><i class="fas fa-envelope"></i></div>
+                                <h4>Email Address</h4>
+                                <p>info@sandersonrealty.com<br>support@sandersonrealty.com</p>
+                                <button class="category-select-btn" id="emailUsBtn">Email Us</button>
+                            </div>
+                            <div class="design-category">
+                                <div class="category-icon"><i class="fas fa-clock"></i></div>
+                                <h4>Business Hours</h4>
+                                <p>Mon-Fri: 8am-6pm<br>Saturday: 9am-4pm<br>Sunday: Closed</p>
+                                <button class="category-select-btn" id="scheduleBtn">Schedule Meeting</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <h3><span class="james">James</span> Sanderson Realty Consultancy</h3>
+                        <p>Building excellence since 2017 with integrity, quality, and innovation. Our commitment to craftsmanship and client satisfaction has made us a trusted name in realty and construction for nearly three decades.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#" data-section="dashboard"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#" data-section="about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                            <li><a href="#" data-section="completed-projects"><i class="fas fa-chevron-right"></i> Completed Projects</a></li>
+                            <li><a href="#" data-section="contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-services">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><a href="#" data-section="services"><i class="fas fa-building"></i> Real Estate Agency</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-clipboard-check"></i> Property Valuation</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-tasks"></i> Property Management</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-drafting-compass"></i> Architectural Designs</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-hard-hat"></i> General Construction</a></li>
+                            <li><a href="#" data-section="services"><i class="fas fa-home"></i> Custom Home Building</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Details</h4>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>area 3, opposite sunbird hotel Lilongwe</p>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <p>265995891694</p>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <p>info@sandersonrealty.com</p>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <p>Mon-Fri: 8am-6pm<br>Saturday: 9am-4pm<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">© 2023 James Sanderson Realty Consultancy Company. All rights reserved.</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="https://wa.me/265995891694" class="fab whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#" class="fab location" id="locationFab">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+    </div>
+
+    <script>
+        // Application Data Storage - EMPTY INITIAL STATE (your backend will populate)
+        const appData = {
+            currentUser: null,
+            projects: { completed: [], progress: [] },
+            reviews: [],
+            designs: { house: [], kitchen: [], ceiling: [] }
+        };
+
+        function createProjectCard(project, type) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            const imagePath = project.image_path || project.image || "/uploads/progress/default.jpg";
+            card.innerHTML = `
+                <div class="project-img">
+                    <div class="project-status ${type === 'completed' ? 'status-completed' : 'status-progress'}">
+                        ${type === 'completed' ? 'Completed' : 'In Progress'}
+                    </div>
+                    <img src="${imagePath}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/400x300/f8f9fa/6c757d?text=Project+Image'">
+                </div>
+                <div class="project-info">
+                    <h3>${project.title}</h3>
+                    <div class="project-location"><i class="fas fa-map-marker-alt"></i> ${project.location}</div>
+                    <p>${project.description}</p>
+                    ${type === 'progress' ? `<div><small>Progress: ${project.progress}%</small></div>` : ''}
+                </div>
+            `;
+            return card;
+        }
+
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const submitLogin = document.getElementById('submitLogin');
+        const pageContents = document.querySelectorAll('.page-content');
+        const addCommentBtn = document.getElementById('addCommentBtn');
+        const submitCommentBtn = document.getElementById('submitCommentBtn');
+        const userCommentInput = document.getElementById('userCommentInput');
+        const uploadContentBtn = document.getElementById('uploadContentBtn');
+        const backToDashboardBtn = document.getElementById('backToDashboard');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const uploadFirstTransformation = document.getElementById('uploadFirstTransformation');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initSidebar();
+            initLoginModal();
+            initNavigation();
+            initDashboard();
+            initUploadFunctionality();
+            initDesignGalleries();
+            showPage('dashboard');
+            loadProjectsFromBackend();
+        });
+
+        function initSidebar() {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+                const icon = this.querySelector('i');
+                icon.className = sidebar.classList.contains('collapsed') ? 'fas fa-bars' : 'fas fa-times';
+            });
+        }
+
+        function initLoginModal() {
+            closeLoginModal.addEventListener('click', () => loginModal.classList.remove('active'));
+            submitLogin.addEventListener('click', () => {
+                const userName = document.getElementById('userName').value.trim();
+                const userEmail = document.getElementById('userEmail').value.trim();
+                if (!userName || !userEmail) { alert('Please enter both name and email.'); return; }
+                if (!/^\S+@\S+\.\S+$/.test(userEmail)) { alert('Valid email required.'); return; }
+                appData.currentUser = { name: userName, email: userEmail, loginTime: new Date().toISOString() };
+                loginModal.classList.remove('active');
+                alert(`Welcome, ${userName}!`);
+                document.getElementById('userName').value = '';
+                document.getElementById('userEmail').value = '';
+            });
+            if (addCommentBtn) {
+                addCommentBtn.addEventListener('click', () => {
+                    appData.currentUser ? userCommentInput.focus() : loginModal.classList.add('active');
+                });
+            }
+        }
+
+        function initNavigation() {
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    showPage(sectionId);
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('collapsed');
+                        mainContent.classList.remove('expanded');
+                        sidebarToggle.querySelector('i').className = 'fas fa-bars';
+                    }
+                    window.scrollTo(0, 0);
+                });
+            });
+            const footerLinks = document.querySelectorAll('.footer-links a, .footer-services a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    if (sectionId) {
+                        navLinks.forEach(nl => {
+                            nl.classList.remove('active');
+                            if (nl.getAttribute('data-section') === sectionId) nl.classList.add('active');
+                        });
+                        showPage(sectionId);
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+            document.querySelectorAll('.design-category[data-category]').forEach(cat => {
+                cat.addEventListener('click', function() {
+                    const catId = this.getAttribute('data-category');
+                    navLinks.forEach(nl => {
+                        nl.classList.remove('active');
+                        if (nl.getAttribute('data-section') === catId) nl.classList.add('active');
+                    });
+                    showPage(catId);
+                });
+            });
+            if (uploadContentBtn) uploadContentBtn.addEventListener('click', () => showPage('upload'));
+            if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', () => showPage('dashboard'));
+            if (uploadFirstTransformation) uploadFirstTransformation.addEventListener('click', () => showPage('upload'));
+        }
+
+        function showPage(pageId) {
+            pageContents.forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId + '-page');
+            if (target) {
+                target.classList.add('active');
+                switch(pageId) {
+                    case 'dashboard': loadDashboardContent(); break;
+                    case 'completed-projects': loadAllCompletedProjects(); break;
+                    case 'progress-projects': loadAllProgressProjects(); break;
+                    case 'house-designs': loadDesignGallery('house'); break;
+                    case 'kitchen-designs': loadDesignGallery('kitchen'); break;
+                    case 'ceiling-designs': loadDesignGallery('ceiling'); break;
+                    case 'before-after': initBeforeAfterUpload(); break;
+                }
+            } else {
+                document.getElementById('dashboard-page').classList.add('active');
+                loadDashboardContent();
+            }
+        }
+
+        async function loadProjectsFromBackend() {
+            try {
+                const completedRes = await fetch('/projects/completed');
+                if (completedRes.ok) {
+                    const completedData = await completedRes.json();
+                    appData.projects.completed = completedData;
+                }
+                const progressRes = await fetch('/projects/progress');
+                if (progressRes.ok) {
+                    const progressData = await progressRes.json();
+                    appData.projects.progress = progressData;
+                }
+                loadDashboardContent();
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+
+        function initDashboard() {
+            if (submitCommentBtn) submitCommentBtn.addEventListener('click', submitComment);
+            const viewMoreCompleted = document.getElementById('viewMoreCompleted');
+            const viewMoreProgress = document.getElementById('viewMoreProgress');
+            if (viewMoreCompleted) viewMoreCompleted.addEventListener('click', () => showPage('completed-projects'));
+            if (viewMoreProgress) viewMoreProgress.addEventListener('click', () => showPage('progress-projects'));
+            loadDashboardContent();
+        }
+
+        function loadDashboardContent() {
+            document.getElementById('completed-count').textContent = appData.projects.completed.length;
+            document.getElementById('completed-count-link').textContent = appData.projects.completed.length;
+            document.getElementById('progress-count').textContent = appData.projects.progress.length;
+            document.getElementById('progress-count-link').textContent = appData.projects.progress.length;
+            document.getElementById('clients-count').textContent = appData.projects.completed.length + appData.projects.progress.length;
+            document.getElementById('reviews-count').textContent = appData.reviews.length + ' Reviews';
+            const aboutCompletedCount = document.getElementById('about-completed-count');
+            if (aboutCompletedCount) aboutCompletedCount.textContent = appData.projects.completed.length;
+
+            const completedContainer = document.getElementById('completed-projects-container');
+            if (completedContainer) {
+                completedContainer.innerHTML = '';
+                appData.projects.completed.slice(0, 6).forEach(project => {
+                    completedContainer.appendChild(createProjectCard(project, 'completed'));
+                });
+            }
+
+            const progressContainer = document.getElementById('progress-projects-container');
+            if (progressContainer) {
+                progressContainer.innerHTML = '';
+                appData.projects.progress.slice(0, 6).forEach(project => {
+                    progressContainer.appendChild(createProjectCard(project, 'progress'));
+                });
+            }
+        }
+
+        function loadAllCompletedProjects() {
+            const container = document.getElementById('all-completed-projects');
+            if (container) {
+                container.innerHTML = '';
+                appData.projects.completed.forEach(project => {
+                    container.appendChild(createProjectCard(project, 'completed'));
+                });
+            }
+        }
+
+        function loadAllProgressProjects() {
+            const container = document.getElementById('all-progress-projects');
+            if (container) {
+                container.innerHTML = '';
+                appData.projects.progress.forEach(project => {
+                    container.appendChild(createProjectCard(project, 'progress'));
+                });
+            }
+        }
+
+        function initDesignGalleries() {
+            loadDesignGallery('house');
+            loadDesignGallery('kitchen');
+            loadDesignGallery('ceiling');
+        }
+
+        function loadDesignGallery(type) {
+            const galleryId = type + '-designs-gallery';
+            const gallery = document.getElementById(galleryId);
+            if (gallery && appData.designs[type]) {
+                gallery.innerHTML = '';
+                appData.designs[type].forEach(design => {
+                    gallery.appendChild(createDesignCard(design, type));
+                });
+            }
+        }
+
+        function createDesignCard(design, type) {
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
+            card.innerHTML = `
+                <div class="gallery-img">
+                    <img src="${design.image}" alt="${design.title}">
+                </div>
+                <div class="gallery-info">
+                    <h4>${design.title}</h4>
+                    <p>${design.description}</p>
+                    <button class="select-design-btn" data-design-type="${type}" data-design-id="${design.id}">
+                        Select This Design
+                    </button>
+                </div>
+            `;
+            const selectBtn = card.querySelector('.select-design-btn');
+            selectBtn.addEventListener('click', function() {
+                const designType = this.getAttribute('data-design-type');
+                const designId = this.getAttribute('data-design-id');
+                selectDesign(designType, designId);
+            });
+            return card;
+        }
+
+        function selectDesign(type, id) {
+            const design = appData.designs[type].find(d => d.id == id);
+            if (design) {
+                alert(`You have selected: ${design.title}\n\n${design.description}\n\nA consultant will contact you.`);
+            }
+        }
+
+        function initUploadFunctionality() {
+            const complUpload = document.getElementById('completed-upload-area');
+            const complInput = document.getElementById('completed-file-input');
+            const complList = document.getElementById('completed-file-list');
+            if (complUpload && complInput) initFileUpload(complUpload, complInput, complList);
+            const progUpload = document.getElementById('progress-upload-area');
+            const progInput = document.getElementById('progress-file-input');
+            const progList = document.getElementById('progress-file-list');
+            if (progUpload && progInput) initFileUpload(progUpload, progInput, progList);
+            document.getElementById('upload-completed-btn')?.addEventListener('click', uploadCompletedProject);
+            document.getElementById('upload-progress-btn')?.addEventListener('click', uploadProgressProject);
+        }
+
+        function initBeforeAfterUpload() {
+            const beforeUploadBox = document.getElementById('before-upload-box');
+            const afterUploadBox = document.getElementById('after-upload-box');
+            const beforeFileInput = document.getElementById('before-file-input');
+            const afterFileInput = document.getElementById('after-file-input');
+            const uploadBeforeAfterBtn = document.getElementById('upload-before-after-btn');
+            const uploadBeforeAfterPageBtn = document.getElementById('uploadBeforeAfter');
+            if (beforeUploadBox && beforeFileInput) {
+                beforeUploadBox.addEventListener('click', () => beforeFileInput.click());
+                beforeFileInput.addEventListener('change', (e) => handleBeforeAfterFiles(e, 'before'));
+            }
+            if (afterUploadBox && afterFileInput) {
+                afterUploadBox.addEventListener('click', () => afterFileInput.click());
+                afterFileInput.addEventListener('change', (e) => handleBeforeAfterFiles(e, 'after'));
+            }
+            if (uploadBeforeAfterBtn) uploadBeforeAfterBtn.addEventListener('click', uploadBeforeAfter);
+            if (uploadBeforeAfterPageBtn) uploadBeforeAfterPageBtn.addEventListener('click', () => showPage('upload'));
+        }
+
+        function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+
+        function submitComment() {
+            if (!appData.currentUser) { loginModal.classList.add('active'); return; }
+            const commentText = userCommentInput.value.trim();
+            if (!commentText) { alert('Please enter a comment.'); userCommentInput.focus(); return; }
+            if (commentText.length < 10) { alert('Please write a more detailed comment (at least 10 characters).'); userCommentInput.focus(); return; }
+            const newReview = {
+                id: appData.reviews.length + 1,
+                name: appData.currentUser.name,
+                comment: commentText,
+                stars: 5,
+                date: new Date().toISOString().split('T')[0],
+                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(appData.currentUser.name)}&background=random`
+            };
+            appData.reviews.unshift(newReview);
+            const reviewsContainer = document.getElementById('reviews-container');
+            if (reviewsContainer) {
+                reviewsContainer.prepend(createReviewCard(newReview));
+                document.getElementById('reviews-count').textContent = appData.reviews.length + ' Reviews';
+            }
+            userCommentInput.value = '';
+            const originalText = submitCommentBtn.innerHTML;
+            submitCommentBtn.innerHTML = '<i class="fas fa-check"></i> Submitted!';
+            submitCommentBtn.style.backgroundColor = '#28a745';
+            setTimeout(() => {
+                submitCommentBtn.innerHTML = originalText;
+                submitCommentBtn.style.backgroundColor = '';
+            }, 2000);
+        }
+
+        function createReviewCard(review) {
+            const card = document.createElement('div');
+            card.className = 'review-card';
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(review.stars)) starsHtml += '<i class="fas fa-star"></i>';
+                else if (i === Math.ceil(review.stars) && review.stars % 1 !== 0) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                else starsHtml += '<i class="far fa-star"></i>';
+            }
+            card.innerHTML = `
+                <div class="review-header">
+                    <div class="review-avatar"><img src="${review.avatar}" alt="${review.name}"></div>
+                    <div class="review-info"><h4>${review.name}</h4><div class="review-stars">${starsHtml}</div></div>
+                </div>
+                <div class="review-content">"${review.comment}"</div>
+            `;
+            return card;
+        }
+
+        function initFileUpload(uploadArea, fileInput, fileList) {
+            uploadArea.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files, fileList, uploadArea));
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => uploadArea.addEventListener(ev, preventDefaults, false));
+            ['dragenter','dragover'].forEach(ev => uploadArea.addEventListener(ev, () => uploadArea.classList.add('dragover'), false));
+            ['dragleave','drop'].forEach(ev => uploadArea.addEventListener(ev, () => uploadArea.classList.remove('dragover'), false));
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                handleFiles(e.dataTransfer.files, fileList, uploadArea);
+            });
+        }
+
+        function handleFiles(files, listEl, area) {
+            for (let f of files) {
+                if (f.size > 50*1024*1024) { alert(`File too large: ${f.name}`); continue; }
+                let icon = 'fa-file';
+                if (f.type.startsWith('image/')) icon = 'fa-file-image';
+                else if (f.type.startsWith('video/')) icon = 'fa-file-video';
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `<i class="fas ${icon}"></i><div class="file-name">${f.name} (${(f.size/1024).toFixed(1)} KB)</div><div class="remove-file"><i class="fas fa-times"></i></div>`;
+                item.querySelector('.remove-file').addEventListener('click', () => item.remove());
+                listEl.appendChild(item);
+            }
+            area.classList.remove('dragover');
+        }
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        async function handleUpload(type) {
+            const prefix = type === 'completed' ? 'completed-project-' : 'progress-project-';
+            const title = document.getElementById(`${prefix}title`)?.value.trim();
+            const location = document.getElementById(`${prefix}location`)?.value.trim();
+            const description = document.getElementById(`${prefix}description`)?.value.trim();
+            const fileInput = document.getElementById(type === 'completed' ? 'completed-file-input' : 'progress-file-input');
+            if (!title || !location || !description || !fileInput.files.length) {
+                alert('Please fill all fields and select an image');
+                return;
+            }
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('location', location);
+            formData.append('description', description);
+            formData.append('section', type);
+            formData.append('file', fileInput.files[0]);
+            try {
+                const resp = await fetch('/upload/project', { method:'POST', body:formData });
+                if (resp.ok) {
+                    await loadProjectsFromBackend();
+                    showPage('dashboard');
+                    alert('Upload successful!');
+                    document.getElementById(`${prefix}title`).value = '';
+                    document.getElementById(`${prefix}location`).value = '';
+                    document.getElementById(`${prefix}description`).value = '';
+                    fileInput.value = '';
+                    document.getElementById(type === 'completed' ? 'completed-file-list' : 'progress-file-list').innerHTML = '';
+                } else {
+                    const err = await resp.json();
+                    alert('Server error: ' + (err.detail || 'unknown'));
+                }
+            } catch (e) {
+                alert('Connection error. Is the server running?');
+            }
+        }
+
+        async function uploadCompletedProject() { await handleUpload('completed'); }
+        async function uploadProgressProject() { await handleUpload('progress'); }
+
+        function handleBeforeAfterFiles(e, type) {
+            const files = e.target.files;
+            const uploadBox = type === 'before' ? document.getElementById('before-upload-box') : document.getElementById('after-upload-box');
+            if (files.length > 0) {
+                const fileName = files[0].name;
+                const fileSize = formatFileSize(files[0].size);
+                const uploadText = uploadBox.querySelector('.upload-text');
+                const uploadSubtext = uploadBox.querySelector('.upload-subtext');
+                if (uploadText) uploadText.textContent = `${fileName} (${fileSize})`;
+                if (uploadSubtext) uploadSubtext.textContent = 'Click to change file';
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function uploadBeforeAfter() {
+            const description = document.getElementById('before-after-description').value.trim();
+            const location = document.getElementById('before-after-location').value.trim();
+            if (!description) { alert('Please enter a description.'); return; }
+            alert(`Before & After transformation uploaded successfully!\n\nLocation: ${location || 'Not specified'}\nDescription: ${description}\n\nThank you!`);
+            document.getElementById('before-after-description').value = '';
+            document.getElementById('before-after-location').value = '';
+            const beforeUploadBox = document.getElementById('before-upload-box');
+            const afterUploadBox = document.getElementById('after-upload-box');
+            if (beforeUploadBox) {
+                const uploadText = beforeUploadBox.querySelector('.upload-text');
+                const uploadSubtext = beforeUploadBox.querySelector('.upload-subtext');
+                if (uploadText) uploadText.textContent = 'Browse from device';
+                if (uploadSubtext) uploadSubtext.textContent = 'Click to upload or drag and drop';
+            }
+            if (afterUploadBox) {
+                const uploadText = afterUploadBox.querySelector('.upload-text');
+                const uploadSubtext = afterUploadBox.querySelector('.upload-subtext');
+                if (uploadText) uploadText.textContent = 'Browse from device';
+                if (uploadSubtext) uploadSubtext.textContent = 'Click to upload or drag and drop';
+            }
+            const beforeFileInput = document.getElementById('before-file-input');
+            const afterFileInput = document.getElementById('after-file-input');
+            if (beforeFileInput) beforeFileInput.value = '';
+            if (afterFileInput) afterFileInput.value = '';
+        }
+
+        function updateDashboardCounts() {
+            document.getElementById('completed-count').textContent = appData.projects.completed.length;
+            document.getElementById('completed-count-link').textContent = appData.projects.completed.length;
+            document.getElementById('progress-count').textContent = appData.projects.progress.length;
+            document.getElementById('progress-count-link').textContent = appData.projects.progress.length;
+            const aboutCompletedCount = document.getElementById('about-completed-count');
+            if (aboutCompletedCount) aboutCompletedCount.textContent = appData.projects.completed.length;
+            const totalClients = appData.projects.completed.length + appData.projects.progress.length;
+            document.getElementById('clients-count').textContent = totalClients > 0 ? totalClients + '+' : '0';
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            console.log("System initialization: Fetching data from database...");
+            try {
+                await loadProjectsFromBackend();
+                updateDashboardCounts();
+                loadDashboardContent();
+            } catch (error) {
+                console.error("Initialization failed:", error);
+            }
+        });
+    </script>
+</body>
+</html>
